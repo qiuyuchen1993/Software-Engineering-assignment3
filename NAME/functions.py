@@ -5,14 +5,19 @@ def getfile(url):
         buffer=req.read().decode('utf-8')    
     else:
         print('It is an invalid url')
+    
     return buffer
-        
-def excute(buffer):
+
+def LEDtester(N):
+    a2d = [ [0]*N for _ in range(N)]
+    return a2d
+       
+def LED(buffer):
     lines=buffer.splitlines()
     N=int(lines[0])
     #start with second line
     #建立led
-    a2d = [ [0]*N for _ in range(N)]
+    a2d = LEDtester(N)
     for i in range(1,len(lines)):
         value=lines[i].strip().split()
         if value[0]=='turn':
@@ -63,14 +68,14 @@ def countnumber(a2d):
                 countnumber+=1
     return countnumber
     
-import argparse
+'''import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--input',help='inout help')
 args = parser.paese_args()
 
-filename=args.input    
+filename=args.input  '''  
 url="http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
 file=getfile(url)
-a2d=excute(file)
+a2d=LED(file)
 number=countnumber(a2d)
-print(number)        
+print(number)  
