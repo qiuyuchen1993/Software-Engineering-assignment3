@@ -6,4 +6,11 @@ def test_LEDtester():
     res=len(LEDtester(10))
     eq_(res,expected,'The size does not match')
     
+def test_countnumber():
+    a2d = [ [1]*10 for _ in range(10)]
+    expected=100
+    res=countnumber(a2d)
+    eq_(res,expected,'The countnumber does not match')
+    
+    
     
