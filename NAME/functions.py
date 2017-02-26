@@ -28,9 +28,6 @@ def LED(buffer):
             command=value[0]+" "+value[1]
             for j in range(0,len(value)):
                 numbers+=re.findall(r'(\w*[0-9]+)\w*',value[j])
-            
-            
-
             x1=int(numbers[0])
             y1=N-int(numbers[1])-1
             x2=int(numbers[2])
@@ -39,8 +36,6 @@ def LED(buffer):
             command=value[0]
             for j in range(0,len(value)):
                 numbers+=re.findall(r'(\w*[0-9]+)\w*',value[j])
-            
-
             x1=int(numbers[0])
             y1=N-int(numbers[1])-1
             x2=int(numbers[2])
