@@ -14,51 +14,60 @@ def LEDtester(N):
     return a2d
        
 def LED(buffer):
+    import re
     lines=buffer.splitlines()
     N=int(lines[0])
     #start with second line
     #建立led
     a2d = LEDtester(N)
     for i in range(1,len(lines)):
+        numbers=[]
         value=lines[i].strip().split()
+        
         if value[0]=='turn':
             command=value[0]+" "+value[1]
-            position1=value[2].split(',')
-            position2=value[4].split(',')
-            x1=int(position1[0])
-            y1=N-int(position1[1])-1
-            x2=int(position2[0])
-            y2=N-int(position2[1])-1
+            for j in range(0,len(value)):
+                numbers+=re.findall(r'(\w*[0-9]+)\w*',value[j])
+            
+            
+
+            x1=int(numbers[0])
+            y1=N-int(numbers[1])-1
+            x2=int(numbers[2])
+            y2=N-int(numbers[3])-1
         elif value[0]=='switch':
             command=value[0]
-            position1=value[1].split(',')
-            position2=value[3].split(',')
-            x1=int(position1[0])
-            y1=N-int(position1[1])-1
-            x2=int(position2[0])
-            y2=N-int(position2[1])-1
-        if(x1>x2):
-            x1,x2=x2,x1
-        if(y1>y2):
-            y1,y2=y2,y1
+            for j in range(0,len(value)):
+                numbers+=re.findall(r'(\w*[0-9]+)\w*',value[j])
+            
 
-
-#打开灯
-        if command=="turn on":
-            for a in range(y1,y2+1):
-                for b in range(x1,x2+1):
-                    a2d[a][b]=1
-        elif command=="turn off":
-            for a in range(y1,y2+1):
-                for b in range(x1,x2+1):
-                    a2d[a][b]=0
-        elif command=="switch":
-            for a in range(y1,y2+1):
-                for b in range(x1,x2+1):
-                    if a2d[a][b]==1:
-                        a2d[a][b]=0
-                    else:
+            x1=int(numbers[0])
+            y1=N-int(numbers[1])-1
+            x2=int(numbers[2])
+            y2=N-int(numbers[3])-1
+        if (0<=x1<=N-1 and 0<=x2<=N-1 and 0<=y1<=N-1 and 0<=y2<=N-1):
+            if(x1>x2):
+                x1,x2=x2,x1
+            if(y1>y2):
+                y1,y2=y2,y1
+    
+    
+    #打开灯
+            if command=="turn on":
+                for a in range(y1,y2+1):
+                    for b in range(x1,x2+1):
                         a2d[a][b]=1
+            elif command=="turn off":
+                for a in range(y1,y2+1):
+                    for b in range(x1,x2+1):
+                        a2d[a][b]=0
+            elif command=="switch":
+                for a in range(y1,y2+1):
+                    for b in range(x1,x2+1):
+                        if a2d[a][b]==1:
+                            a2d[a][b]=0
+                        else:
+                            a2d[a][b]=1
     return a2d
 
 def countnumber(a2d):
@@ -72,10 +81,11 @@ def countnumber(a2d):
 '''import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--input',help='inout help')
-args = parser.paese_args()
+args = parser.parse_args()
 
-filename=args.input  '''  
-url="http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
+url=args.input  ''' 
+
+url="http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt"
 file=getfile(url)
 a2d=LED(file)
 number=countnumber(a2d)
