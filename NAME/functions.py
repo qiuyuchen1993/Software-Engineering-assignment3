@@ -63,7 +63,12 @@ def countnumber(a2d):
                 countnumber+=1
     return countnumber
     
-    
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--input',help='inout help')
+args = parser.paese_args()
+
+filename=args.input    
 url="http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
 file=getfile(url)
 a2d=excute(file)
