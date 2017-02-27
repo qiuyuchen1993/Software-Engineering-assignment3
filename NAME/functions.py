@@ -100,14 +100,15 @@ def countnumber(a2d):
                 countnumber+=1
     return countnumber
    
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument('--input',help='inout help')
-args = parser.parse_args()
 
-url=args.input
 
-def getoutcome(url):
+def getoutcome():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input',help='inout help')
+    args = parser.parse_args()
+
+    url=args.input
     file=getfile(url)
     a2d=LED(file)
     number=countnumber(a2d)
