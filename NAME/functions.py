@@ -111,5 +111,5 @@ def getoutcome():
     file=getfile(url)
     a2d=LED(file)
     number=countnumber(a2d)  
-    print(number)
+    print(url+" "+number)
     
