@@ -1,4 +1,5 @@
 def getfile(url):
+    #using url to get buffer
     import urllib.request
     if url.startswith('http'):
         req = urllib.request.urlopen(url)
@@ -9,22 +10,26 @@ def getfile(url):
     return buffer
 
 def LEDtester(N):
+    #creat a N*N LED
     a2d = [ [0]*N for _ in range(N)]
     return a2d
 
 def turn_on(a2d,x1,y1,x2,y2):
+    #turn on the LED
     for a in range(y1,y2+1):
         for b in range(x1,x2+1):
             a2d[a][b]=1
     return a2d
 
 def turn_off(a2d,x1,y1,x2,y2):
+    #turn off the LED
     for a in range(y1,y2+1):
         for b in range(x1,x2+1):
             a2d[a][b]=0
     return a2d
 
 def switch(a2d,x1,y1,x2,y2):
+    #switch the LED
     for a in range(y1,y2+1):
         for b in range(x1,x2+1):
             if a2d[a][b]==1:
@@ -35,6 +40,7 @@ def switch(a2d,x1,y1,x2,y2):
 
        
 def LED(buffer):
+    #to execute the command in file
     import re
     lines=buffer.splitlines()
     N=int(lines[0])
@@ -92,6 +98,7 @@ def LED(buffer):
     return a2d
 
 def countnumber(a2d):
+    #count the number of [1]
     countnumber=0
     for i in range(len(a2d)): 
         for j in range(len(a2d)):
@@ -102,6 +109,7 @@ def countnumber(a2d):
 
 
 def getoutcome():
+    #get the outcome of LEDtester
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--input',help='input help')
