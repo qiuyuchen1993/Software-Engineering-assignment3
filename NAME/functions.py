@@ -100,13 +100,13 @@ def countnumber(a2d):
                 countnumber+=1
     return countnumber
     
-'''import argparse
+import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--input',help='inout help')
 args = parser.parse_args()
 
-url=args.input'''
-url="http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
+url=args.input
+
 file=getfile(url)
 a2d=LED(file)
 number=countnumber(a2d)
