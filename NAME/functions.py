@@ -99,7 +99,7 @@ def countnumber(a2d):
             if a2d[i][j]==1:
                 countnumber+=1
     return countnumber
-    
+   
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--input',help='inout help')
@@ -107,7 +107,8 @@ args = parser.parse_args()
 
 url=args.input
 
-file=getfile(url)
-a2d=LED(file)
-number=countnumber(a2d)
-print(number)  
+def getoutcome(url):
+    file=getfile(url)
+    a2d=LED(file)
+    number=countnumber(a2d)
+    return number  

@@ -7,7 +7,7 @@ b = [0]*10
 pprint(b)
 
 N = 6
-c2d = [ [0]*N for _ in range(N)]
+c2d = [ [1]*5 for _ in range(5)]
 pprint(c2d)
 
 M = 6
