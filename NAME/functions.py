@@ -40,14 +40,30 @@ def LED(buffer):
             y1=N-int(numbers[1])-1
             x2=int(numbers[2])
             y2=N-int(numbers[3])-1
-        if (0<=x1<=N-1 and 0<=x2<=N-1 and 0<=y1<=N-1 and 0<=y2<=N-1):
-            if(x1>x2):
-                x1,x2=x2,x1
-            if(y1>y2):
-                y1,y2=y2,y1
-    
-    
-    #打开灯
+        print(command,x1,y1,x2,y2)
+        if (x1<0):
+            x1=0
+        elif (x1>N-1):
+            x1=N-1
+        if (x2<0):
+            x1=0
+        elif (x2>N-1):
+            x1=N-1
+        if (y1<0):
+            y1=0
+        elif (y1>N-1):
+            y1=N-1
+        if (y2<0):
+            y1=0
+        elif (y2>N-1):
+            y1=N-1
+        
+        if(x1<=x2 and (N-y1-1)<=(N-y2-1)):
+            y1,y2=y2,y1
+        
+
+
+#打开灯
             if command=="turn on":
                 for a in range(y1,y2+1):
                     for b in range(x1,x2+1):
