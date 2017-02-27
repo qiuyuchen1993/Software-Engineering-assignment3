@@ -78,7 +78,6 @@ def LED(buffer):
             y2=0
         elif (y2>N-1):
             y2=N-1
-        print(command,x1,y1,x2,y2)
         if(x1<=x2 and y1<=y2):
         
 
@@ -111,5 +110,7 @@ def getoutcome():
     url=args.input
     file=getfile(url)
     a2d=LED(file)
-    number=countnumber(a2d)
-    return number  
+    number=countnumber(a2d)  
+    print (number)
+    
+getoutcome()
