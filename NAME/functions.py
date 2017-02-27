@@ -1,4 +1,3 @@
-
 def getfile(url):
     import urllib.request
     if url.startswith('http'):
@@ -12,6 +11,28 @@ def getfile(url):
 def LEDtester(N):
     a2d = [ [0]*N for _ in range(N)]
     return a2d
+
+def turn_on(a2d,x1,y1,x2,y2):
+    for a in range(y1,y2+1):
+        for b in range(x1,x2+1):
+            a2d[a][b]=1
+    return a2d
+
+def turn_off(a2d,x1,y1,x2,y2):
+    for a in range(y1,y2+1):
+        for b in range(x1,x2+1):
+            a2d[a][b]=0
+    return a2d
+
+def switch(a2d,x1,y1,x2,y2):
+    for a in range(y1,y2+1):
+        for b in range(x1,x2+1):
+            if a2d[a][b]==1:
+                a2d[a][b]=0
+            else:
+                a2d[a][b]=1
+    return a2d
+
        
 def LED(buffer):
     import re
@@ -27,58 +48,48 @@ def LED(buffer):
         if value[0]=='turn':
             command=value[0]+" "+value[1]
             for j in range(0,len(value)):
-                numbers+=re.findall(r'(\w*[0-9]+)\w*',value[j])
+                numbers+=re.findall("[-\d]+",value[j])
             x1=int(numbers[0])
-            y1=N-int(numbers[1])-1
+            y1=int(numbers[1])
             x2=int(numbers[2])
-            y2=N-int(numbers[3])-1
+            y2=int(numbers[3])
         elif value[0]=='switch':
             command=value[0]
             for j in range(0,len(value)):
-                numbers+=re.findall(r'(\w*[0-9]+)\w*',value[j])
+                numbers+=re.findall("[-\d]+",value[j])
             x1=int(numbers[0])
-            y1=N-int(numbers[1])-1
+            y1=int(numbers[1])
             x2=int(numbers[2])
-            y2=N-int(numbers[3])-1
-        #print(command,x1,y1,x2,y2)
+            y2=int(numbers[3])
+        
         if (x1<0):
             x1=0
         elif (x1>N-1):
             x1=N-1
         if (x2<0):
-            x1=0
+            x2=0
         elif (x2>N-1):
-            x1=N-1
+            x2=N-1
         if (y1<0):
             y1=0
         elif (y1>N-1):
             y1=N-1
         if (y2<0):
-            y1=0
+            y2=0
         elif (y2>N-1):
-            y1=N-1
-        
-        if(x1<=x2 and (N-y1-1)<=(N-y2-1)):
-            y1,y2=y2,y1
+            y2=N-1
+        print(command,x1,y1,x2,y2)
+        if(x1<=x2 and y1<=y2):
         
 
 
 #打开灯
             if command=="turn on":
-                for a in range(y1,y2+1):
-                    for b in range(x1,x2+1):
-                        a2d[a][b]=1
+                turn_on(a2d,x1,y1,x2,y2)
             elif command=="turn off":
-                for a in range(y1,y2+1):
-                    for b in range(x1,x2+1):
-                        a2d[a][b]=0
+                turn_off(a2d,x1,y1,x2,y2)
             elif command=="switch":
-                for a in range(y1,y2+1):
-                    for b in range(x1,x2+1):
-                        if a2d[a][b]==1:
-                            a2d[a][b]=0
-                        else:
-                            a2d[a][b]=1
+                switch(a2d,x1,y1,x2,y2)
     return a2d
 
 def countnumber(a2d):
@@ -89,14 +100,13 @@ def countnumber(a2d):
                 countnumber+=1
     return countnumber
     
-import argparse
+'''import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--input',help='inout help')
 args = parser.parse_args()
 
-url=args.input 
-
-
+url=args.input'''
+url="http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
 file=getfile(url)
 a2d=LED(file)
 number=countnumber(a2d)

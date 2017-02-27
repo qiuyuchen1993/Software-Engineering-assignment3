@@ -25,5 +25,24 @@ def test_all():
     res=countnumber(a2d)
     eq_(res,expected,'The countnumber does not match')
     
+def test_turnon():
+    a2d=[ [0]*5 for _ in range(5)]
+    light=turn_on(a2d,0,0,0,0)
+    res=countnumber(light)
+    expected=1
+    eq_(res,expected,'The turn_on is not right')
 
+def test_turnoff():
+    a2d=[ [1]*2 for _ in range(2)]
+    light=turn_off(a2d,0,0,1,1)
+    res=countnumber(light)
+    expected=0
+    eq_(res,expected,'The turn_off is not right')
+    
+def test_switch():
+    a2d=[ [1]*2 for _ in range(2)]
+    light=switch(a2d,0,0,1,1)
+    res=countnumber(light)
+    expected=0
+    eq_(res,expected,'The switch is not right')
     
