@@ -9,7 +9,7 @@ setup(name="ledtester",
       licence="GPL3",
       packages=['NAME'],
       entry_points={
-        'console_scripts':['led_tester=NAME.functions.getoutcome']
+        'console_scripts':['led_tester=NAME.functions:getoutcome']
         }
       )
 
