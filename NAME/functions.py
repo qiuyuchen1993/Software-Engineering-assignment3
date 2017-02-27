@@ -45,7 +45,7 @@ def LED(buffer):
         numbers=[]
         value=lines[i].strip().split()
         
-        if value[0]=='turn':
+        if (value[0]=='turn' and (value[1]=='on' or value[1]=='off' )):
             command=value[0]+" "+value[1]
             for j in range(0,len(value)):
                 numbers+=re.findall("[-\d]+",value[j])
@@ -61,6 +61,8 @@ def LED(buffer):
             y1=int(numbers[1])
             x2=int(numbers[2])
             y2=int(numbers[3])
+        else:
+            continue
         
         if (x1<0):
             x1=0
@@ -79,8 +81,6 @@ def LED(buffer):
         elif (y2>N-1):
             y2=N-1
         if(x1<=x2 and y1<=y2):
-        
-
 
 #打开灯
             if command=="turn on":
@@ -104,7 +104,7 @@ def countnumber(a2d):
 def getoutcome():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input',help='inout help')
+    parser.add_argument('--input',help='input help')
     args = parser.parse_args()
 
     url=args.input
@@ -112,4 +112,5 @@ def getoutcome():
     a2d=LED(file)
     number=countnumber(a2d)  
     print(url+" "+str(number))
+
     
