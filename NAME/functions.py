@@ -113,4 +113,3 @@ def getoutcome():
     number=countnumber(a2d)  
     print(number)
     
-getoutcome()
